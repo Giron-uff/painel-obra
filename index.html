@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giron | Painel de Obras</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- SheetJS -->
+    <script src="xlsx.full.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="app-header">
+        <div class="logos-container">
+            <img src="logo_ponte.png" alt="Ecoponte" class="header-logo">
+            <div style="width:1px; height:32px; background:rgba(255,255,255,0.3)"></div>
+            <img src="logo_riominas.png" alt="EcoRioMinas" class="header-logo">
+        </div>
+
+        <div class="header-right">
+            <span>PAINEL GERENCIAL</span>
+            <div class="avatar"
+                style="width:32px; height:32px; background:white; color:var(--primary-green); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700;">
+                U</div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Selecionar Segmento</h3>
+                <div class="sh-select-wrapper">
+                    <select id="sh-select" class="sh-select">
+                        <option value="" disabled selected>Carregando...</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="sidebar-section" style="margin-top:auto">
+                <div
+                    style="background:#edf7ed; padding:16px; border-radius:8px; color:#1e4620; font-size:13px; line-height:1.4;">
+                    <strong>Dica de Uso:</strong><br>
+                    Clique nas datas previstas para editar. O sistema calculará o atraso automaticamente.
+                </div>
+            </div>
+        </aside>
+
+        <!-- Content -->
+        <main class="content-area" id="main-content">
+            <!-- Dynamic Content Injected Here -->
+            <div
+                style="display:flex; align-items:center; justify-content:center; width:100%; height:100%; color:#9ca3af; flex-direction:column; gap:16px;">
+                <span class="material-symbols-rounded" style="font-size:48px;">engineering</span>
+                <p>Selecione um segmento (SH) na barra lateral.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Date Modal -->
+    <div id="edit-modal" class="modal-overlay">
+        <div class="modal-box">
+            <h3 style="margin-bottom:16px; color:var(--text-dark);">Definir Data Prevista</h3>
+            <p id="modal-stage-name" style="font-size:14px; color:var(--text-muted); margin-bottom:12px;">Etapa...</p>
+
+            <div style="margin-bottom:8px;">
+                <label style="font-size:12px; color:var(--text-muted);">Nova Data</label>
+                <input type="date" id="modal-date-input"
+                    style="width:100%; padding:8px; border:1px solid #ddd; border-radius:6px; margin-top:4px;">
+            </div>
+
+            <div class="modal-btns">
+                <button onclick="closeEditModal()"
+                    style="background:transparent; border:1px solid #ddd; padding:8px 16px; border-radius:6px; cursor:pointer;">Cancelar</button>
+                <button onclick="saveEditModal()"
+                    style="background:var(--primary-green); color:white; border:none; padding:8px 16px; border-radius:6px; cursor:pointer;">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

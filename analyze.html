@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Analysis</title>
+    <script src="xlsx.full.min.js"></script>
+</head>
+<body>
+    <h1>Data Analysis</h1>
+    <pre id="output">Loading...</pre>
+
+    <script>
+        const output = document.getElementById('output');
+        const files = [
+            'ERM - ENTREGÁVEIS GEN.xlsx',
+            'Material Ivestimentos GIRON.xlsx'
+        ];
+
+        async function analyze() {
+            let log = '';
+            for (const file of files) {
+                try {
+                    log += `\n--- FILE: ${file} ---\n`;
+                    const response = await fetch(file);
+                    const arrayBuffer = await response.arrayBuffer();
+                    const workbook = XLSX.read(arrayBuffer, {type: 'array'});
+                    
+                    workbook.SheetNames.forEach(sheetName => {
+                        log += `Sheet: ${sheetName}\n`;
+                        const worksheet = workbook.Sheets[sheetName];
+                        const json = XLSX.utils.sheet_to_json(worksheet, {header: 1});
+                        if (json.length > 0) {
+                            log += `Headers: ${JSON.stringify(json[0])}\n`;
+                            log += `Row 1: ${JSON.stringify(json[1])}\n`;
+                        }
+                    });
+                } catch (e) {
+                    log += `Error loading ${file}: ${e.message}\n`;
+                }
+            }
+            output.textContent = log;
+        }
+
+        analyze();
+    </script>
+</body>
+</html>

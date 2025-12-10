@@ -1,0 +1,6 @@
+@echo off
+echo Starting Giron Construction Tracker...
+echo Opening browser...
+start http://localhost:8000
+python server.py
+pause
